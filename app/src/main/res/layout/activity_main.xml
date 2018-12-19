@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textAlignment="center" android:layout_weight="1"/>
+                android:textAlignment="center" android:layout_weight="1" android:id="@+id/lblLatitud"/>
 
     </LinearLayout>
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:id="@+id/textView" android:layout_weight="1" android:textAlignment="center"/>
+                android:id="@+id/lblLongitud" android:layout_weight="1" android:textAlignment="center"/>
 
     </LinearLayout>
     <LinearLayout
@@ -50,12 +50,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Altitud"
-                android:id="@+id/textView2" android:layout_weight="1" android:textAlignment="center"/>
+                android:layout_weight="1" android:textAlignment="center"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:id="@+id/textView3" android:layout_weight="1" android:textAlignment="center"/>
+                android:id="@+id/lblAltitud" android:layout_weight="1" android:textAlignment="center"/>
 
     </LinearLayout>
 
