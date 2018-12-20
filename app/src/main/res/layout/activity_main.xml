@@ -61,13 +61,15 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/layMapa">
-            <fragment
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/layMapa">
+
+        <fragment
                     android:id="@+id/FragmentMapa"
                     android:layout_width="match_parent"
-                      android:layout_height="match_parent"/>
-
-        
+                      android:layout_height="match_parent"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"/>
     </LinearLayout>
 
 

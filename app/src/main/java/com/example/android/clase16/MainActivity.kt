@@ -43,8 +43,6 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
         else {
             p0?.isMyLocationEnabled = true
         }
-
-
     }
 
     //necesitamos un locationmanager (asi como los sensormanager)
@@ -58,8 +56,8 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         //el fragmento mapa necesita un callback q hremos ahora
-        val fragmentoMapaCallback = supportFragmentManager.findFragmentById(R.id.FragmentMapa) as SupportMapFragment
-        fragmentoMapaCallback.getMapAsync(this)
+        val fragmentoMapaCB = supportFragmentManager.findFragmentById(R.id.FragmentMapa) as SupportMapFragment
+        fragmentoMapaCB.getMapAsync(this)
 
         //el gps es un permiso importante entonces debe salir un popup que le indique al usuario
         //sobre el uso del GPS
