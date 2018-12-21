@@ -10,6 +10,7 @@ import android.location.LocationManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat.getSystemService
 import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -58,7 +59,6 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
     }
 
     //necesitamos un locationmanager (asi como los sensormanager)
-
     var lm : LocationManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,13 +97,10 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
 
     //estos son los 4 metodos a implementar obligatoriamente
     override fun onLocationChanged(location: Location?) {
-
         //CLASE17
         latitud = location?.latitude.toString().toDouble()
         longitud = location?.longitude.toString().toDouble()
         altitud = location?.altitude.toString().toDouble()
-
-
         //CLASE16
         //se asigna textos a los labels del view activity_main
         lblLatitud.text = location?.latitude.toString()
@@ -112,17 +109,18 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
 
         var geocoder = Geocoder (this)
         var lugares = geocoder.getFromLocation(latitud,longitud,1) as MutableList
-
-
         //CLASE17 // EL BOTON CREA LA MARCA (PIN) EN EL MAPA
-        btnMarca.setOnClickListener {
+        //btnMarca.setOnClickListener {
             var marcador = LatLng(latitud,longitud)
             mapa?.addMarker(MarkerOptions().position(marcador))
-        }
-
+        var locacion1 : LatLng
+        var locacion2 : LatLng
+        //}
 
         if(lugares.size>0) {
             lblDireccion.text=lugares.get(0).getAddressLine(0)
+            mapa?.addMarker(MarkerOptions().position(marcador))
+
         }
         else {
             lblDireccion.text = " sin direccion"
