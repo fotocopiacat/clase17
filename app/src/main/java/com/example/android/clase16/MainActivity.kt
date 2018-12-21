@@ -3,6 +3,7 @@ package com.example.android.clase16
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -13,6 +14,8 @@ import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
 
 //se necesitau un listener, en este caso LOCATIONLISTENER.
@@ -20,6 +23,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
     //var mapa es objeto de la clase
     var mapa:GoogleMap? = null
+
+    //CLASE 17 --- //LAS VARIABLES Q DICEN 17 ES PORQUE SON DE LA CLASE 17
+
+    var latitud = 0.0
+    var longitud = 0.0
+    var altitud = 0.0
+    var mapa17: GoogleMap? = null
+    var lm17 : LocationManager? = null
 
     override fun onMapReady(p0: GoogleMap?) {
         //este val mapa se  creo afuera como metodo de clase porque asi es accesible
@@ -86,10 +97,37 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
 
     //estos son los 4 metodos a implementar obligatoriamente
     override fun onLocationChanged(location: Location?) {
+
+        //CLASE17
+        latitud = location?.latitude.toString().toDouble()
+        longitud = location?.longitude.toString().toDouble()
+        altitud = location?.altitude.toString().toDouble()
+
+
+        //CLASE16
         //se asigna textos a los labels del view activity_main
         lblLatitud.text = location?.latitude.toString()
         lblLongitud.text = location?.longitude.toString()
         lblAltitud.text = location?.altitude.toString()
+
+        var geocoder = Geocoder (this)
+        var lugares = geocoder.getFromLocation(latitud,longitud,1) as MutableList
+
+
+        //CLASE17 // EL BOTON CREA LA MARCA (PIN) EN EL MAPA
+        btnMarca.setOnClickListener {
+            var marcador = LatLng(latitud,longitud)
+            mapa?.addMarker(MarkerOptions().position(marcador))
+        }
+
+
+        if(lugares.size>0) {
+            lblDireccion.text=lugares.get(0).getAddressLine(0)
+        }
+        else {
+            lblDireccion.text = " sin direccion"
+        }
+
     }
 
     //se debe hacer ctrol o  para sobrescribir este metodo
